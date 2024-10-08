@@ -1,16 +1,15 @@
-import heart from "../../assets/heart.svg";
-import cart from "../../assets/iconcart.svg";
-import user from "../../assets/account.png";
-import s from "./NavBar.module.scss";
-import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-import "./style.css";
 import { useNavigate } from "react-router";
 import useAuth from "../../custom-hooks/useAuth";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase.config";
 import { toast } from "react-toastify";
 import { signOut } from "firebase/auth";
+import s from "./NavBar.module.scss";
+import heart from "../../assets/heart.svg";
+import cart from "../../assets/iconcart.svg";
+import user from "../../assets/account.png";
 import Search from "../Search/Search";
 import Menu from "../Menu/Menu";
 import { ArrowLeft, Search as SearchIcon } from "lucide-react";
@@ -36,9 +35,9 @@ const NavBar:React.FC = () => {
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        headerRef.current?.classList.add("sticky-header");
+        headerRef.current?.classList.add(s.sticky_header);
       } else {
-        headerRef.current?.classList.remove("sticky-header");
+        headerRef.current?.classList.remove(s.sticky_header);
       }
     });
   };
@@ -54,7 +53,7 @@ const NavBar:React.FC = () => {
   });
 
   const toggleProfileActions = ():void => {
-    ProfileActionRef.current?.classList.toggle("show__profileActions");
+    ProfileActionRef.current?.classList.toggle(s.show__profileActions);
   };
 
   const logOut = ():void => {

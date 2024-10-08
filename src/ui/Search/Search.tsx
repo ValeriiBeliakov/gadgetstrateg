@@ -1,4 +1,4 @@
-import React, { ChangeEvent,useState } from "react";
+import React, { ChangeEvent,useEffect,useState } from "react";
 import { products } from "../../Constants";
 import { useNavigate } from "react-router";
 import search from "../../assets/iconsearch.svg";
@@ -9,14 +9,28 @@ import { Product } from "../../types/types";
 const Search:React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
- 
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const callback = (e:KeyboardEvent)=>{
+      if(e.code === "Enter" && searchTerm.length > 0){
+       handleIconClick();
+      }
+    };
+      document.addEventListener("keydown",callback);
+      return ()=>{
+        document.removeEventListener("keydown",callback)
+      }
+    
+  },[searchTerm])
+
+
 
 
   // For changes in input
   const handleSearchChange = (e:ChangeEvent<HTMLInputElement>):void => {
     const value = e.target.value;
-  
+
     if (value) {
       setSearchTerm(value);
       const filtered = products.filter((product) =>
@@ -25,6 +39,7 @@ const Search:React.FC = () => {
 
       setFilteredProducts(filtered);
     } else {
+      setSearchTerm("");
       setFilteredProducts([]);
     }
   };

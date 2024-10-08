@@ -1,16 +1,15 @@
 import { useParams } from "react-router";
-import s from "./ProductDetails.module.scss";
-import "./style.css";
-import { products } from "../../Constants";
-import { motion } from "framer-motion";
-import Title from "../../ui/Title";
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import ProductList from "../../ui/ProductList/ProductList";
+import { useCustomDispatch } from "../../custom-hooks/store";
 import { cartActions } from "../../redux/slices/CartSlice";
+import { motion } from "framer-motion";
+import s from "./ProductDetails.module.scss";
+import { products } from "../../Constants";
+import Title from "../../ui/Title";
+import ProductList from "../../ui/ProductList/ProductList";
 import {StarRating} from "../../ui/Star/Star";
 import { toast } from "react-toastify";
 import { Product } from "../../types/types";
-import { useCustomDispatch } from "../../custom-hooks/store";
 
 
 const ProductDetails:React.FC = () => {
@@ -89,13 +88,13 @@ const ProductDetails:React.FC = () => {
         <div className={s.details}>
           <div className={s.nav}>
             <div
-              className={`${tab === "desc" ? "active__tab" : ""} `}
+              className={`${tab === "desc" ? s.active__tab : ""} `}
               onClick={() => setTab("desc")}
             >
               Описание
             </div>
             <div
-              className={`${tab === "rev" ? "active__tab" : ""} `}
+              className={`${tab === "rev" ? s.active__tab : ""} `}
               onClick={() => setTab("rev")}
             >
               Отзывы

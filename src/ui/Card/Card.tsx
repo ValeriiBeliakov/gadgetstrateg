@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { cartActions } from "../../redux/slices/CartSlice";
 import { favoriteActions } from "../../redux/slices/FavoritesSlice";
-import "./style.css";
 import { useCustomDispatch, useCustomSelector } from "../../custom-hooks/store";
 import { Product } from "../../types/types";
 
